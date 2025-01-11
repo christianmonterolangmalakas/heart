@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will </title>
+    <title>Will You Marry Me Jillian?</title>
     <style>
         /* General Styling */
         body {
@@ -100,14 +100,153 @@
                 transform: translateY(0);
             }
         }
+
+        /* Image Fade In and Out */
+        #noImage {
+            display: none;
+            margin-top: -350px;
+            animation: fadeInImage 1s ease-in-out forwards;
+        }
+
+        #noImage img {
+            width: 250px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInImage {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOutImage {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+        }
+
+        /* Advanced video animation */
+        #videoContainer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 3;
+        }
+
+        video {
+            width: 40vw; /* Reduced video size */
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: fadeInVideo 3s ease-out forwards;
+        }
+
+        @keyframes fadeInVideo {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Love Letter Styling */
+       #loveLetter {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            width: 70vw;
+            max-width: 600px;
+            margin-top: -300px;
+            border-radius: 15px;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: fadeInLetter 2s forwards;
+        }
+
+        #loveLetter h2 {
+            font-size: 2.5rem;
+            color: #ff477e;
+            margin-bottom: 20px;
+        }
+
+        #loveLetter p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        @keyframes fadeInLetter {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOutLetter {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Will You Marry Me? 💍</h1>
-    <button id="yesBtn">YES, BABY! ❤️</button>
+    <h1>Will You Marry Me Jillian? 💍</h1>
+    <button id="yesBtn">YES, LOVE! ❤️</button>
     <button id="noBtn">NO 😢</button>
+    <button id="loveLetterBtn">Read My Love Letter 💌</button>
 
     <div id="response" class="response"></div>
+
+    <!-- Hidden Couple Animation -->
+    <div id="couple" class="couple" style="display: none;">
+        <img src="kissjil.jpg" alt="Couple Kissing" width="150" />
+    </div>
+
+    <!-- Hidden Advanced Video Animation -->
+    <div id="videoContainer">
+        <video id="advanceVideo" controls autoplay>
+            <source src="kissko.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Image for NO Response -->
+    <div id="noImage">
+        <img src="iyak.jpg" alt="Sad Response" />
+    </div>
+
+    <!-- Love Letter Modal -->
+    <div id="loveLetter">
+        <h2>My Dearest Jillian,</h2>
+        <p>Simula nung nakilala kita, alam kong ikaw na talaga ang para sa akin. Sorry sa mga pagkukulang ko talaga sayo love ko, pero super mahal paden talaga kita kahit na minsan nagtatampo kana sakin dahil sa pagiging ganto kong personality. I hope maging strong paden ang relationship naten at i hope maging future wife na talaga kita</p>
+        <p>I LOVE YOU WILL ALL MY HEART JILLIAN</p>
+    </div>
 
     <script>
         // Random heart generator
@@ -131,16 +270,109 @@
         const responseDiv = document.getElementById('response');
         const yesBtn = document.getElementById('yesBtn');
         const noBtn = document.getElementById('noBtn');
+        const coupleDiv = document.getElementById('couple');
+        const videoContainer = document.getElementById('videoContainer');
+        const advanceVideo = document.getElementById('advanceVideo');
+        const noImageDiv = document.getElementById('noImage');
+        const loveLetterBtn = document.getElementById('loveLetterBtn');
+        const loveLetterDiv = document.getElementById('loveLetter');
 
         yesBtn.addEventListener('click', () => {
             responseDiv.textContent = 'Yay! I knew you would say YES! ❤️ Let’s plan the wedding! 🎉';
             responseDiv.style.color = '#ff6f91';
+
+            // Hide other content
+            hideAllContent();
+
+            // Show couple animation
+            coupleDiv.style.display = 'block';
+
+            // Show video animation
+            videoContainer.style.display = 'block';
+
+            // Disable both buttons to prevent further clicks
+            yesBtn.disabled = true;
+            noBtn.disabled = true;
+
+            // Reset and play video every time YES is clicked
+            advanceVideo.currentTime = 0;  // Reset to the beginning
+            advanceVideo.play();  // Start the video again
+
+            // Optional: Hide video after it ends
+            advanceVideo.onended = () => {
+                videoContainer.style.display = 'none';  // Hide the video container after the video ends
+            };
+
+            // Hide the couple image after 3 seconds
+            setTimeout(() => {
+                coupleDiv.style.display = 'none';
+            }, 3000);
+
+            // Reset buttons after 5 seconds to allow another click (if you want this feature)
+            setTimeout(() => {
+                yesBtn.disabled = false;
+                noBtn.disabled = false;
+            }, 5000);
         });
 
-        noBtn.addEventListener('click', () => {
-            responseDiv.textContent = 'Oh no... 💔 But I still love you. 😢';
-            responseDiv.style.color = '#666';
+      noBtn.addEventListener('click', () => {
+    responseDiv.textContent = 'Oh no... 💔 But I still love you. 😢';
+    responseDiv.style.color = '#666';
+
+    // Hide other content
+    hideAllContent();
+
+    // Show the image immediately
+    noImageDiv.style.display = 'block';
+
+    // Apply the fade-in effect
+    noImageDiv.style.animation = 'fadeInImage 1s ease-in-out forwards';
+
+    // Disable both buttons to prevent further clicks
+    yesBtn.disabled = true;
+    noBtn.disabled = true;
+
+    // Reset YES button after 3 seconds
+    setTimeout(() => {
+        yesBtn.disabled = false;
+    }, 3000);
+
+    // Fade out the image after 5 seconds
+    setTimeout(() => {
+        noImageDiv.style.animation = 'fadeOutImage 1s ease-in-out forwards';
+    }, 5000);
+
+    // Re-enable the "YES" button after the image fades out
+    setTimeout(() => {
+        noImageDiv.style.display = 'none';
+        yesBtn.disabled = false;
+    }, 7000);
+});
+
+
+        // Love letter popup logic
+        loveLetterBtn.addEventListener('click', () => {
+            // Hide other content
+            hideAllContent();
+
+            // Show the love letter
+            loveLetterDiv.style.display = 'block';
+            loveLetterDiv.style.animation = 'fadeInLetter 2s forwards';
+
+            setTimeout(() => {
+                loveLetterDiv.style.animation = 'fadeOutLetter 2s forwards';
+                setTimeout(() => {
+                    loveLetterDiv.style.display = 'none';
+                }, 2000);
+            }, 5000);
         });
+
+        function hideAllContent() {
+            coupleDiv.style.display = 'none';
+            videoContainer.style.display = 'none';
+            noImageDiv.style.display = 'none';
+            loveLetterDiv.style.display = 'none';
+        }
     </script>
 </body>
 </html>
