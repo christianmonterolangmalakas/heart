@@ -182,7 +182,7 @@
 </head>
 <body>
 
-    <h1>Kilig Ka Na Ba JILLIANDY MONTERO?</h1>
+    <h1>Kilig Ka Na Ba JILLIAN DIZON MONTERO?</h1>
 
     <div class="heart-container">
         <div class="heart"></div>
@@ -190,33 +190,50 @@
         <div class="heart"></div>
     </div>
 
-    <button class="button" onclick="showMessage()">Press to Feel the Kilig OF MY TITE</button>
+    <button class="button" onclick="toggleMessage()">Press to Feel the TITE</button>
 
     <div class="message-container" id="messageContainer">
         <div class="message" id="kiligMessage">
-            <p>OO ANG SARAP MO ANG LAKI NG ETIT MOO</p>
+            <p>ANG LAKI NG TITE MO CHRISTIAN ANG SARAP PAKANTOT CHRISTIAN</p>
             <p class="heart-icon">💖</p>
         </div>
     </div>
 
     <div class="story" id="story">
-        <p>ANG LAKI NG TITE MO CHRISTIAN ANG SARAP PA KISS NG TITEEE ✨</p>
+        <p>ANG SARAP NG TAMOD MO ANG LAKI NG TITE MONG MAUGAT PWEDE MOBAKO KANTUTIN CHRISTIAN MONTERO ANAKAN MOKO NG SAMPUNG DOZENA✨</p>
     </div>
 
     <script>
-        function showMessage() {
+        let messageVisible = false;
+
+        function toggleMessage() {
             const messageContainer = document.getElementById('messageContainer');
             const kiligMessage = document.getElementById('kiligMessage');
             const story = document.getElementById('story');
             
-            messageContainer.style.display = 'block';
-            setTimeout(() => {
-                kiligMessage.style.opacity = 1;
-            }, 200);
+            if (!messageVisible) {
+                // Show message
+                messageContainer.style.display = 'block';
+                setTimeout(() => {
+                    kiligMessage.style.opacity = 1;
+                }, 200);
 
-            setTimeout(() => {
-                story.style.opacity = 1;
-            }, 5000);
+                setTimeout(() => {
+                    story.style.opacity = 1;
+                }, 5000);
+
+                messageVisible = true;
+            } else {
+                // Hide message
+                kiligMessage.style.opacity = 0;
+                story.style.opacity = 0;
+
+                setTimeout(() => {
+                    messageContainer.style.display = 'none';
+                }, 1000); // Delay to allow fade-out
+
+                messageVisible = false;
+            }
         }
     </script>
 
